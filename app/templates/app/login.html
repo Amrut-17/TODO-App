@@ -1,0 +1,23 @@
+{% extends 'app/core.html' %}
+{% block title %}
+    SignIn
+{% endblock title %}
+
+
+{% block content %}
+    <h1 class='text-center mb-4'>Lets get in.....</h1>
+    <div class='col-md-4 shadow mx-auto'>
+        <div class="alert alert-info text-center"><strong>Login Here..</strong></div>
+        <div class="alert alert-success p4">
+            <form action="/login/" method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <div class='text-center p-2'>
+                    <input type="submit" value="submit" class='btn btn-primary mt-2 '>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+
+

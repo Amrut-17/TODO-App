@@ -1,0 +1,58 @@
+{% extends 'app/core.html' %}
+{% block title %}
+    Home Page
+{% endblock title %}
+
+{% block content %}
+    <div class="container p-3">
+        <h1 class='mx-auto text-center'>Your TO-DO list</h1>
+        <div class="row d-flex flex-row mx-auto justify-content-center mt-4 p-3">
+            <div class="col-md-4 shadow ">
+                <div class="alert alert-warning text-center"><strong>Add Task</strong></div>
+                <div class="alert alert-info">
+                    <form action="/add-task/" method="post">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <div class='text-centerx'>
+                            <input type="submit" value="add" class='btn btn-primary mt-2 '>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6 shadow border">
+                {% if tasks|length == 0 %}
+                <div class="alert alert-danger">
+                    No Tasks!!
+                </div>
+                {% else %}
+                <div>
+                    <table class='table'>
+                        <thead>
+                            {% comment %} <th>ID</th> {% endcomment %}
+                            <th>Task</th>
+                            <th>Status</th>
+                            <th>Prioroty</th>
+                            <th>Created At</th>
+                            <th>Delete Task</th>
+                        </thead>
+                        <tbody>
+                            {% for task in tasks %}
+                                <tr>
+                                    {% comment %} <td>{{task.id}}</td> {% endcomment %}
+                                    <td>{{task.title}}</td>
+                                    <td>{{task.status}}</td>
+                                    <td>{{task.priority}}</td>
+                                    <td>{{task.created_at}}</td>
+                                    <td><a href="/delete-task/{{task.id}}" class='btn btn-danger'>Delete</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+

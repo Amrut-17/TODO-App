@@ -1,0 +1,23 @@
+{% extends 'app/core.html' %}
+{% block title %}
+    Signup
+{% endblock title %}
+
+
+{% block content %}
+    <h1 class='text-center mb-4'>Create User account and start a new journey!!!</h1>
+    <div class='col-md-6 shadow mx-auto'>
+        <div class="alert alert-info text-center"><strong>Create User Account</strong></div>
+        <div class="alert alert-success p4">
+            <form action="/signup/" method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <div class='text-center p-2'>
+                    <input type="submit" value="submit" class='btn btn-primary mt-2 '>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+
+
